@@ -1,7 +1,7 @@
 # ODiscord
 A collection of Discord hacking tools/exploits that I developed using NodeJS.
 
-# Useful tool for ODiscord
+## Useful tool for ODiscord
 [Resource Hacker](http://www.angusj.com/resourcehacker/)
 
 ## License
