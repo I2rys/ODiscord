@@ -1,6 +1,5 @@
 //Dependencies
 const Discord = require("discord.js-selfbot-v11")
-const Request = require("request")
 const Delay = require("delay")
 
 //Variables
