@@ -1,3 +1,4 @@
+
 # ODiscord MultiNewLine Channel Spammer
 This send spam thousands of useless new lines on a discord server channel.
 
@@ -10,5 +11,11 @@ npm:
 
     node index.js <discord_token> <newlines_amount> <spam_amount> <guild_id> <channel_id>
 
+ - discord_token - The account discord token.
+ - newlines_amount - The amount of new lines to use.
+ - spam_amount - The amount of how many times to send the payload/newlines to the channel.
+ - guild_id - The server ID of the target channel.
+ - channel_id - The ID of the target channel.
+
 ## License
-<a href="https://github.com/I2rys/ODiscord/blob/main/LICENSE">MIT</a> © <a href="https://github.com/I2rys">I2rys</a>
+MIT © I2rys
