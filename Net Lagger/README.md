@@ -18,4 +18,4 @@ For more info of pkg click [me](https://www.npmjs.com/package/pkg).
 Once the file is runned, the file will check if Discord folder exist on AppData  to see If Discord is installed and once the directory exist it will go to a Discord module called Discord Voice, then inject a malicious code to It's index.js. But It will only work If the user has NPM installed on their computer.
 
 ## License
-<a href="https://github.com/I2rys/ODiscord/blob/main/LICENSE">MIT</a> © <a href="https://github.com/I2rys">I2rys</a>
+MIT © I2rys
