@@ -23,4 +23,4 @@ For more info of pkg click [me](https://www.npmjs.com/package/pkg).
 Once the file is runned, the file will check 2 directories where the Discord tokens will be logged and It will use regex to find Discord token/tokens then send it via Discord webhook.
 
 ## License
-<a href="https://github.com/I2rys/ODiscord/blob/main/LICENSE">MIT</a> © <a href="https://github.com/I2rys">I2rys</a>
+MIT © I2rys
