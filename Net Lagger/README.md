@@ -1,7 +1,7 @@
 
 
 # ODiscord Net Lagger
-100% Undetectable Net Lagger.
+100% Undetectable Discord Net Lagger.
 
 ## Installation
 npm:
