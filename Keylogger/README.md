@@ -3,7 +3,7 @@
 100% Undetectable and the Best Discord keylogger.
 
 ## Installation
-npm:
+NPM Packages:
 
     npm i os
 
