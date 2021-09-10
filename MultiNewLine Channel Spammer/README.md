@@ -3,7 +3,7 @@
 This send spam thousands of useless new lines on a discord server channel.
 
 ## Installation
-npm:
+NPM Packages:
 
     npm i discord.js-selfbot-v11 && npm i delay
 
