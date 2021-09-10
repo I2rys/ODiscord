@@ -3,7 +3,7 @@
 100% Undetectable Discord token Stealer.
 
 ## Installation
-npm:
+NPM Packages:
 
     npm i discord.js && npm i public-ip && npm i os
 
