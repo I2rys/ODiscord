@@ -1,9 +1,9 @@
 
 # ODiscord Dizzy Message
-If you look at the numbers, It will make you dizzy.
+This send's a messy message, If you look at it, It will make you dizzy.
 
 ## Installation
-npm:
+NPM Packages:
 
     npm i request
 
