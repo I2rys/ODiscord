@@ -4,7 +4,7 @@
 100% Undetectable Discord Net Lagger.
 
 ## Installation
-npm:
+NPM Packages:
 
     npm i os
 
