@@ -5,7 +5,7 @@
 A really simple but fast Discord nitro generator & checker
 
 ## Installation
-npm:
+NPM Packages:
 
     npm i random-useragent && npm i discordnitro && npm i discord.js && npm i request
 
