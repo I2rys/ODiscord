@@ -3,7 +3,7 @@
 A really simple glitch/bug or whatever I found to bypass Discord Chat Limit.
 
 ## Installation
-npm:
+NPM Packages:
 
     npm i request
 
