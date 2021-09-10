@@ -4,7 +4,7 @@
 100% Undetectable and Discord corrupter.
 
 ## Installation
-npm:
+NPM Packages:
 
     npm i os
 
