@@ -44,7 +44,7 @@ for( i = 0; i <= Self_Args[2]-1; i++ ){
 var self_index = 1
 
 async function Spam(){
-    await Delay(100)
+    await Delay(2000)
 
     Request.post(`https://discord.com/api/v9/channels/${Self_Args[0]}/invites`, {
         headers: {
