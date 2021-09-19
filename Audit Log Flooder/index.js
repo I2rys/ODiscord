@@ -7,18 +7,18 @@ const Self_Args = process.argv.slice(2)
 
 //Main
 if(Self_Args.length == 0){
-    console.log(`node index.js <guild_id> <discord_token> <amount>
-Example: node index.js guild_id discord_token 10`)
+    console.log(`node index.js <channel_id> <discord_token> <amount>
+Example: node index.js channel_id discord_token 10`)
     process.exit()
 }
 
 if(Self_Args[0] == ""){
-    console.log("Invalid guild_id.")
+    console.log("Invalid channel_id.")
     process.exit()
 }
 
 if(isNaN(Self_Args[0])){
-    console.log("guild_id is not an Int.")
+    console.log("channel_id is not an Int.")
     process.exit()
 }
 
@@ -54,7 +54,7 @@ async function Spam(){
         body: JSON.stringify({ "max_age": Math.floor(Math.random() * 604800), "max_uses": 0, "temporary": false })
     }, function(err, res, body){
         if(body.indexOf("Unknown Channel") != -1){
-            console.log("Invalid guild_id.")
+            console.log("Invalid channel_id.")
             process.exit
         }
 
