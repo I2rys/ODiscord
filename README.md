@@ -14,5 +14,8 @@
 ## Contributing
 Well, I'm running out of ideas. So If you have some ideas that you want to suggest please make a "Pull requests" [here](https://github.com/I2rys/ODiscord/pulls) and if you found some bugs please make an issue [here](https://github.com/I2rys/ODiscord/issues). Every contribution will be appreciated,
 
+## Note
+Don't request to much your account might get limited.
+
 ## License
 MIT © I2rys
