@@ -15,30 +15,42 @@ const Homedir = Os.userInfo().homedir
 const Token_Protector = {
     directories_to_watch: [
         `${Homedir}\\AppData\\Roaming\\discord\\Local Storage\\leveldb`,
-        `${Homedir}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb`
+        `${Homedir}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb`,
+        `${Homedir}\\twwtwtwt\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb`
     ],
     discord_tokens_regex: new RegExp(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/, "g")
 }
 
 //Functions
-Token_Protector.token_remover = function(file_path){
-    var data = Fs.readFileSync(file_path, "utf8")
+Token_Protector.tokens_remover = function(file_path){
+    Fs.readFile(file_path, "utf8", function(err, data){
+        if(err){
+            console.log(`Unable to read file ${file_path}`)
+            return
+        }
 
-    if(data.match(Token_Protector.discord_tokens_regex)){
-        console.log(`Tokens found in file ${file_path}`)
-
-        data = data.replace(Token_Protector.discord_tokens_regex, "")
-
-        Fs.writeFileSync(file_path, data, "utf8")
-        console.log(`Tokens in file ${file_path} are removed.`)
-    }else{
-        console.log(`No tokens found in file ${file_path}`)
-    }
+        if(data.match(Token_Protector.discord_tokens_regex)){
+            console.log(`Tokens found in file ${file_path}`)
+    
+            data = data.replace(Token_Protector.discord_tokens_regex, "")
+    
+            Fs.writeFileSync(file_path, data, "utf8")
+            console.log(`Tokens in file ${file_path} are removed.`)
+        }else{
+            console.log(`No tokens found in file ${file_path}`)
+        }
+    })
 }
 
 Token_Protector.watch_directory = function(directory_path){
+    if(!Fs.existsSync(directory_path)){
+        console.log(`Directory path ${directory_path} doesn't exist, therefore skipping the directory.`)
+        return
+    }
+
     console.log(`Watching directory ${directory_path}`)
 
+    const directory_files = Fs.readdirSync(directory_path, "utf8")
     const directory_watcher = Chokidar.watch(directory_path, {
         awaitWriteFinish: true
     })
@@ -47,8 +59,13 @@ Token_Protector.watch_directory = function(directory_path){
         console.log(`Changes detected in file ${path}`)
 
         console.log(`Checking any tokens in file ${path}`)
-        Token_Protector.token_remover(path)
+        Token_Protector.tokens_remover(path)
     })
+
+    console.log(`Checking directory ${directory_path} files for any tokens.`)
+    for( i in directory_files ){
+        Token_Protector.tokens_remover(`${directory_path}\\${directory_files[i]}`)
+    }
 }
 
 //Main
