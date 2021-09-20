@@ -1,13 +1,9 @@
 //Dependencies
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
 const RandomString = require("randomstring")
 const Request = require("request")
 const Delay = require("delay")
 const Chalk = require("chalk")
-var setTitle = require('console-title');
+const setTitle = require("console-title")
 const Fs = require("fs")
 
 //Variables
