@@ -1,4 +1,5 @@
 //Dependencies
+const Chokidar = require("chokidar")
 const Os = require("os")
 const Fs = require("fs")
 
@@ -9,82 +10,48 @@ if(!Fs.existsSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\disco
 }
 
 //Variables
-const F_1 = Fs.readdirSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb`, { withFileTypes: true }).filter((file) => file.name.indexOf(".log") != -1)
+const Homedir = Os.userInfo().homedir
+
+const Token_Protector = {
+    directories_to_watch: [
+        `${Homedir}\\AppData\\Roaming\\discord\\Local Storage\\leveldb`,
+        `${Homedir}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb`
+    ],
+    discord_tokens_regex: new RegExp(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/, "g")
+}
+
+//Functions
+Token_Protector.token_remover = function(file_path){
+    var data = Fs.readFileSync(file_path, "utf8")
+
+    if(data.match(Token_Protector.discord_tokens_regex)){
+        console.log(`Tokens found in file ${file_path}`)
+
+        data = data.replace(Token_Protector.discord_tokens_regex, "")
+
+        Fs.writeFileSync(file_path, data, "utf8")
+        console.log(`Tokens in file ${file_path} are removed.`)
+    }else{
+        console.log(`No tokens found in file ${file_path}`)
+    }
+}
+
+Token_Protector.watch_directory = function(directory_path){
+    console.log(`Watching directory ${directory_path}`)
+
+    const directory_watcher = Chokidar.watch(directory_path, {
+        awaitWriteFinish: true
+    })
+
+    directory_watcher.on("change", (path)=>{
+        console.log(`Changes detected in file ${path}`)
+
+        console.log(`Checking any tokens in file ${path}`)
+        Token_Protector.token_remover(path)
+    })
+}
 
 //Main
-console.log("Checking for tokens on startup.")
-Fs.readFile(`C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name}`, "utf8", function(err, data){
-    if(err){}
-    var find_tokens = data.match(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/g)
-
-    if(find_tokens != null){
-        console.log(`Tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name}`)
-        data = data.replace(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/g, "")
-
-        Fs.writeFileSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name}`, data, "utf8")
-        console.log(`Tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name} removed.`)
-    }else{
-        console.log(`No tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name} idling...`)
-    }
-})
-
-console.log("Monitoring Discord.")
-console.log(`Monitoring: C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name}`)
-Fs.watchFile(`C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name}`, function(cur, prev){
-    console.log(`Change on C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name} detected.`)
-    
-    var data = Fs.readFileSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name}`, "utf8")
-    var find_tokens = data.match(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/g)
-
-    if(find_tokens != null){
-        console.log(`Tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name}`)
-        data = data.replace(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/g, "")
-
-        Fs.writeFileSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name}`, data, "utf8")
-        console.log(`Tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name} removed.`)
-    }else{
-        console.log(`No tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${F_1[0].name} idling...`)
-    }
-})
-
-if(Fs.existsSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb`)){
-    const F_2 = Fs.readdirSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb`, { withFileTypes: true }).filter((file) => file.name.indexOf(".log") != -1)
-
-    Fs.readFile(`C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name}`, "utf8", function(err, data){
-        if(err){}
-    
-        var find_tokens = data.match(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/g)
-    
-        if(find_tokens != null){
-            console.log(`Tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name}`)
-            data = data.replace(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/g, "")
-    
-            Fs.writeFileSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name}`, data, "utf8")
-            console.log(`Tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name} removed.`)
-        }else{
-            console.log(`No tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name} idling...`)
-        }
-    })
-
-    console.log("Monitoring Chrome.")
-    console.log(`Monitoring: C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name}`)
-
-    Fs.watchFile(`C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name}`, function(cur, prev){
-        console.log(`Change on C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name} detected.`)
-        
-        var data = Fs.readFileSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name}`, "utf8")
-        var find_tokens = data.match(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/g)
-    
-        if(find_tokens != null){
-            console.log(`Tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name}`)
-            data = data.replace(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/g, "")
-    
-            Fs.writeFileSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name}`, data, "utf8")
-            console.log(`Tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name} removed.`)
-        }else{
-            console.log(`No tokens found in C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${F_2[0].name} idling...`)
-        }
-    })
-}else{
-    console.log("Looks like you don't have Chrome installed, skipping Chrome monitoring.")
+for( i in Token_Protector.directories_to_watch ){
+    Token_Protector.watch_directory(Token_Protector.directories_to_watch[i])
 }
