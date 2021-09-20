@@ -5,7 +5,7 @@ A simple but fast Discord token generator & checker that checks 2 types of token
 ## Installation
 NPM Packages:
 
-    npm i randomstring && npm i request && npm i delay
+    npm i randomstring && npm i request && npm i delay && npm i console-title && npm i chalk
 
 ## Usage
 
