@@ -5,7 +5,7 @@ A simple but effective Discord token protector.
 ## Installation
 NPM Packages:
 
-    npm i os
+    npm i os && npm i chokidar
 
 ## Usage
 
