@@ -1,6 +1,5 @@
 //Dependencies
 const Discord = require("discord.js-selfbot-v11")
-const Request = require("request")
 
 //Variables
 const Self_Args = process.argv.slice(2)
