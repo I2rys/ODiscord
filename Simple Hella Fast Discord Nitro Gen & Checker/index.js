@@ -39,10 +39,19 @@ setInterval(function(){
             "User-Agent": Random_UserAgent.getRandom()
         }
     }, function(err, res, body){
-        if(res.statusCode == 200){
-            console.log(`Valid nitro code: ${code}`)
-            Webhook.send(`Valid nitro code: ${code}`)
-        }else{
+        if(err){
+            console.log(`Invalid nitro code: ${code}`)
+            return
+        }
+
+        try{
+            if(res.statusCode == 200){
+                console.log(`Valid nitro code: ${code}`)
+                Webhook.send(`Valid nitro code: ${code}`)
+            }else{
+                console.log(`Invalid nitro code: ${code}`)
+            }
+        }catch{
             console.log(`Invalid nitro code: ${code}`)
         }
     })
