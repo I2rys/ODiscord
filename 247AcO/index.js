@@ -2,8 +2,8 @@
 const Puppeteer = require("puppeteer")
 
 //Variables
-const Email = ""
-const Password = ""
+const Email = "" || process.env.email
+const Password = "" || process.env.password
 
 //Functions
 async function Main(){
