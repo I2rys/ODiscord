@@ -3,6 +3,7 @@ const Random_UserAgent = require("random-useragent")
 const Discord_Nitro = require("discordnitro")
 const Discord = require("discord.js")
 const Request = require("request")
+const Chalk = require("chalk")
 
 //Variables
 const Self_Args = process.argv.slice(2)
@@ -10,22 +11,22 @@ const Self_Args = process.argv.slice(2)
 //Main
 if(Self_Args.length == 0){
     console.log(`node index.js <checking_speed(Milliseconds)> <webhook_link>
-Example: node index.js 1000 yourwebhooklink`)
+Example: node index.js 1000 yourawesomewebhook`)
     process.exit()
 }
 
 if(Self_Args[0] == ""){
-    console.log("Invalid checking_speed.")
+    console.log(Chalk.red("Invalid checking_speed."))
     process.exit()
 }
 
 if(isNaN(Self_Args[0])){
-    console.log("checking_speed is not an Int.")
+    console.log(Chalk.red("checking_speed is not an Int."))
     process.exit()
 }
 
 if(Self_Args[1] == ""){
-    console.log("Invalid webhook_link.")
+    console.log(Chalk.RED("Invalid webhook_link."))
     process.exit()
 }
 
@@ -40,19 +41,19 @@ setInterval(function(){
         }
     }, function(err, res, body){
         if(err){
-            console.log(`Invalid nitro code: ${code}`)
+            console.log(Chalk.red(`Invalid nitro code: ${code}`))
             return
         }
 
         try{
             if(res.statusCode == 200){
-                console.log(`Valid nitro code: ${code}`)
-                Webhook.send(`Valid nitro code: ${code}`)
+                console.log(Chalk.greenBright(`Valid nitro code: ${code}`))
+                Webhook.send(`I Found a Valid Nitro! @everyone: ${code}`)
             }else{
-                console.log(`Invalid nitro code: ${code}`)
+                console.log(Chalk.red(`Invalid nitro code: ${code}`))
             }
         }catch{
-            console.log(`Invalid nitro code: ${code}`)
+            console.log(Chalk.red(`Invalid nitro code: ${code}`))
         }
     })
 }, Self_Args[0])
