@@ -21,7 +21,7 @@ async function Main(){
     
     const page_content = await page.content()
 
-    console.log("Checking for any new login detected.")
+    console.log("Checking for any new login detected(1).")
     if(page_content.indexOf("New login location detected,") != -1){
         console.log("New location login detected. Please check your email and verify the location then rerun the program.")
         process.exit()
@@ -32,7 +32,7 @@ async function Main(){
         console.log("Captcha detected, please solve it and don't exit the program.")
     }
 
-    console.log("Second checking for any new login detected.")
+    console.log("Checking for any new login detected(2).")
     if(page_content.indexOf("New login location detected,") != -1){
         console.log("New location login detected. Please check your email and verify the location then rerun the program.")
         process.exit()
