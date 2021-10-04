@@ -1,6 +1,6 @@
 
 # ODiscord ADS
-AIO Discord sniper, you can also easily make your own plugin for ADS.
+AIO Discord sniper that you can use also you can create plugins easily for ADS.
 
 ## Installation
 NPM Packages:
