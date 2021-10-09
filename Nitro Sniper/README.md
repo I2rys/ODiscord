@@ -6,7 +6,7 @@ A really simple Discord nitro sniper.
 ## Installation
 NPM Packages:
 
-    npm i request && npm i discord.js-selfbot-v11
+    npm i request && npm i discord.js-selfbot-v11 && npm i chalk
 
 ## Usage
 
