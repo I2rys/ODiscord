@@ -34,12 +34,12 @@ User.on("message", (message)=>{
                 }
             }, function(err, res, body){
                 if(err){
-                    console.log(`Unable to radeem nitro code ${code}`)
+                    console.log(`Unable to redeem nitro code ${code}`)
                     return
                 }
 
-                if(body.indexOf("radeemed already") != -1){
-                    console.log(`Nitro code ${code} is already radeemed.`)
+                if(body.indexOf("redeemed already") != -1){
+                    console.log(`Nitro code ${code} is already redeemed.`)
                 }else if(body.indexOf("nitro") != -1){
                     console.log(`Nitro code ${code} claimed.`)
                 }else{
