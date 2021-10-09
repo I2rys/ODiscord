@@ -29,7 +29,7 @@ User.on("message", (message)=>{
         try{
             const code = message.content.split("/")[message.content.split("/").length-1]
 
-            Request.post(`https://discordapp.com/api/v6/entitlements/gift-codes/${code}/redeem`, {
+            Request.get(`https://discordapp.com/api/v6/entitlements/gift-codes/${code}/redeem`, {
                 headers: {
                     "Authorization": Self_Args[0]
                 }

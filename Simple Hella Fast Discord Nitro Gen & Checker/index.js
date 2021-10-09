@@ -1,5 +1,4 @@
 //Dependencies
-const Random_UserAgent = require("random-useragent")
 const Discord_Nitro = require("discordnitro")
 const Discord = require("discord.js")
 const Request = require("request")
@@ -35,11 +34,7 @@ const Webhook = new Discord.WebhookClient(Self_Args[1].split("/").length-2, Self
 setInterval(function(){
     const code = Discord_Nitro(1)[0]
 
-    Request(`https://discordapp.com/api/v9/entitlements/gift-codes/${code}?with_application=false&with_subscription_plan=true`, {
-        headers: {
-            "User-Agent": Random_UserAgent.getRandom()
-        }
-    }, function(err, res, body){
+    Request(`https://discordapp.com/api/v9/entitlements/gift-codes/${code}?with_application=false&with_subscription_plan=true`, function(err, res, body){
         if(err){
             console.log(Chalk.red(`Invalid nitro code: ${code}`))
             return
