@@ -13,7 +13,7 @@ NPM Packages:
     node index.js <discord_token> <dictionary> <changing_delay(seconds)>
 
  - discord_token - Your discord token.
- - dictionary - Your messages to put in your Discord account status.
+ - dictionary - Your messages to change in your Discord account status.
  - changing_delay - The status changing delay in seconds.
 
 ## License
