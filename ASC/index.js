@@ -54,6 +54,10 @@ User.on("ready", function(){
 
     Looper()
     async function Looper(){
+        if(self_index == Dictionary.length){
+            self_index = 0
+        }
+
         await Delay(Self_Args[2] * 1000)
 
         Request.patch("https://discord.com/api/v9/users/@me/settings", {
