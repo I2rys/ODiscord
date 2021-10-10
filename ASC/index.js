@@ -67,7 +67,18 @@ User.on("ready", function(){
             },
             "body": JSON.stringify({ "custom_status": { "text": Dictionary[self_index], "expires_at":"2021-10-10T06:59:59.999Z" } })
         }, function(err, res, body){
-            console.log(`Changed to ${Dictionary[self_index]}`)
+            if(err){
+                console.log(`Unable to change to ${Dictionary[self_index]}`)
+                self_index += 1
+                Looper()
+                return
+            }
+
+            if(res.statusCode == 200 || body.indexOf('"locale":') != -1){
+                console.log(`Changed to ${Dictionary[self_index]}`)
+            }else{
+                console.log(`Unable to change to ${Dictionary[self_index]}`)
+            }
         })
 
         self_index += 1
