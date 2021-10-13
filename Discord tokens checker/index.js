@@ -7,20 +7,20 @@ const Fs = require("fs")
 const Self_Args = process.argv.slice(2)
 
 //Main
-if(Self_Args.length == 0){
+if(!Self_Args.length){
     console.log(`node index.js <input>
 Example: node index.js ex_discord_tokens.txt`)
     process.exit()
 }
 
-if(Self_Args[0] == ""){
+if(!Self_Args[0]){
     console.log("Invalid input.")
     process.exit()
 }
 
 const discord_tokens = Fs.readFileSync(Self_Args[0], "utf8").split("\n")
 
-if(discord_tokens.length == 0){
+if(!discord_tokens.length){
     console.log("It looks like the input(discord tokens) you specified is empty.")
     process.exit()
 }
