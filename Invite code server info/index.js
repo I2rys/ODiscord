@@ -6,13 +6,13 @@ const Request = require("request")
 const Self_Args = process.argv.slice(2)
 
 //Main
-if(Self_Args.length == 0){
+if(!Self_Args.length){
     console.log(`node index.js <discord_server_invite_code>
 Example: node index.js discord_server_invite_code_here`)
     process.exit()
 }
 
-if(Self_Args[0] === ""){
+if(!Self_Args[0]){
     console.log("Invalid discord_server_invite_code.")
     process.exit()
 }
