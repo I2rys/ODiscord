@@ -1,0 +1,9 @@
+{
+    "name": "MalCBAAV",
+    "bin": "index.js",
+    "pkg": {
+        "assets": "assets/*",
+        "targets": [ "node14-win-x64" ],
+        "outputPath": "dist"
+    }
+}
