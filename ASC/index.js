@@ -10,7 +10,7 @@ const Self_Args = process.argv.slice(2)
 const User = new Discord.Client()
 
 //Main
-if(!Self_Args){
+if(!Self_Args.length){
     console.log(`node index.js <discord_token> <dictionary> <changing_delay(seconds)>
 Example: node index.js yourdiscordtoken dictionary_test.txt 5`)
     process.exit()
@@ -65,19 +65,19 @@ User.on("ready", function(){
                 "Content-Type": "application/json",
                 "Authorization": Self_Args[0]
             },
-            "body": JSON.stringify({ "custom_status": { "text": Dictionary[self_index], "expires_at":"2021-10-10T06:59:59.999Z" } })
+            "body": JSON.stringify({ "custom_status": { "text" : Dictionary[self_index] } })
         }, function(err, res, body){
             if(err){
-                console.log(`Unable to change to ${Dictionary[self_index]}`)
+                console.log(`Unable to change to ${Dictionary[self_index-1]}`)
                 self_index += 1
                 Looper()
                 return
             }
 
             if(res.statusCode == 200 || body.indexOf('"locale":') != -1){
-                console.log(`Changed to ${Dictionary[self_index]}`)
+                console.log(`Changed to ${Dictionary[self_index-1]}`)
             }else{
-                console.log(`Unable to change to ${Dictionary[self_index]}`)
+                console.log(`Unable to change to ${Dictionary[self_index-1]}`)
             }
         })
 
