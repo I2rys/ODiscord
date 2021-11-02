@@ -10,12 +10,11 @@ var results = ""
 
 //Main
 if(Self_Args.length == 0){
-    console.log(`node index.js <channel_id> <amount> <output> <discord_token>
-Example: node index.js thechannelid 50 ./output_test.txt yourdiscordtoken`)
+    console.log("node index.js <channel_id> <amount> <output> <discord_token>")
     process.exit()
 }
 
-if(Self_Args[0] == ""){
+if(!Self_Args[0]){
     console.log("Invalid channel_id.")
     process.exit()
 }
@@ -25,7 +24,7 @@ if(isNaN(Self_Args[0])){
     process.exit()
 }
 
-if(Self_Args[1] == ""){
+if(!Self_Args[1]){
     console.log("Invalid amount.")
     process.exit()
 }
@@ -35,12 +34,12 @@ if(isNaN(Self_Args[1])){
     process.exit()
 }
 
-if(Self_Args[2] == ""){
+if(!Self_Args[2]){
     console.log("Invalid output.")
     process.exit()
 }
 
-if(Self_Args[3] == ""){
+if(!Self_Args[3]){
     console.log("Invalid discord_token.")
     process.exit()
 }
@@ -106,11 +105,13 @@ function Main(){
                             before_message_id = body[i].id
                         }
 
-                        if(results.length == 0){
-                            results = `[${body[i].author.username}#${body[i].author.discriminator}][${body[i].author.id}][${body[i].timestamp}] ${body[i].content}`
-                        }else{
-                            results += `\n[${body[i].author.username}#${body[i].author.discriminator}][${body[i].author.id}][${body[i].timestamp}] ${body[i].content}`
-                        }
+                        try{
+                            if(!results.length){
+                                results = `[${body[i].author.username}#${body[i].author.discriminator}][${body[i].author.id}][${body[i].timestamp}] ${body[i].content}`
+                            }else{
+                                results += `\n[${body[i].author.username}#${body[i].author.discriminator}][${body[i].author.id}][${body[i].timestamp}] ${body[i].content}`
+                            }
+                        }catch{}
 
                         if(i == body.length){
                             before_message_id = body[i].id
@@ -130,7 +131,7 @@ function Main(){
                 }
             }, function(err, res, body){
                 if(err){
-                    console.log(er)
+                    console.log(err)
                     process.exit()
                 }
 
@@ -145,11 +146,13 @@ function Main(){
                             before_message_id = body[i].id
                         }
 
-                        if(results.length == 0){
-                            results = `[${body[i].author.username}#${body[i].author.discriminator}][${body[i].author.id}][${body[i].timestamp}] ${body[i].content}`
-                        }else{
-                            results += `\n[${body[i].author.username}#${body[i].author.discriminator}][${body[i].author.id}][${body[i].timestamp}] ${body[i].content}`
-                        }
+                        try{
+                            if(!results.length){
+                                results = `[${body[i].author.username}#${body[i].author.discriminator}][${body[i].author.id}][${body[i].timestamp}] ${body[i].content}`
+                            }else{
+                                results += `\n[${body[i].author.username}#${body[i].author.discriminator}][${body[i].author.id}][${body[i].timestamp}] ${body[i].content}`
+                            }
+                        }catch{}
                     }
 
                     if(new_amount != 0){
