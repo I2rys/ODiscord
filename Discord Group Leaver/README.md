@@ -5,8 +5,6 @@ A very fast Discord Group DM leaver
 NPM Packages:
 
     npm i
-      or
-    npm i node-fetch@2.6.1
 
 ## Build
 
