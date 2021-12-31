@@ -1,0 +1,14 @@
+{
+  "name": "group-leaver",
+  "version": "1.0.0",
+  "description": "Quickly mass leave group DMs on Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Spinfal",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}
