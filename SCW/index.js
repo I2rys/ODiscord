@@ -27,7 +27,7 @@ if(!/^[0-9]{18}$/.test(Self_Args[1])){
     process.exit();
 }
 
-if(isNaN(Self_Args[2]) || Self_Args <= 0){
+if(Self_Args[2] <= 0 || isNaN(Self_Args[2])){
     console.log(error("You provided an invalid amount."));
     process.exit();
 }
