@@ -1,3 +1,5 @@
+# DISCLAIMER
+Rate limits can last 30 minutes. Please do not over use this tool as it will cause issues and can lead to your account being disabled for API abuse (like any tool on this repo)
 
 # ODiscord SCW
 Spam create webhook in a Discord server channel.
