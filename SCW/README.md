@@ -5,7 +5,7 @@ Spam create webhook in a Discord server channel.
 ## Installation
 NPM Packages:
 
-    npm i node-fetch@2.6.1 chalk
+    npm i node-fetch@2.6.1 chalk@4.1.2
 
 ## Usage
 ```
