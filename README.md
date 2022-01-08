@@ -6,6 +6,10 @@
 	<a href="https://nodejs.org/"><img src="https://img.shields.io/badge/-Nodejs-green?style=flat-square&logo=Node.js"></img></a>
 </p>
 
+# Before using any of these tools
+Automating your Discord account violates [Discord's Terms of Service](https://discord.com/tos) and can lead to you being ratelimited, disabled, or terminated.
+<br>Do **not** over-use these tools as, again, it will lead to ratelimits, account being disabled, or even terminated.
+
 ## Tools
 1. 247AcO - A really simple code to run your Discord account 24/7
 2. ADS - AIO Discord sniper that you can use also you can create plugins easily for ADS.
@@ -44,9 +48,6 @@
 
  1. [ResourceHacker](http://www.angusj.com/resourcehacker/)
  2. [ResEdit](https://www.start64.com/index.php/64-bit-software/64bit-development/5701-resedit-64bit-version)
-
-## Note
-Don't request to much on Discord's API because your account might get limited.
 
 ## License
 MIT © I2rys
