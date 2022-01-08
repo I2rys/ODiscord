@@ -15,9 +15,9 @@ Example: node index.js MYsEcReTtOkEn`)
     process.exit()
 }
 
-if(Self_Args[0] == ""){
-    console.log(Chalk.red("Invalid Discord Token!"))
-    process.exit()
+if (!/(mfa\.[a-z0-9_-]{20,})|([a-z0-9_-]{23,28}\.[a-z0-9_-]{6,7}\.[a-z0-9_-]{27})/i.test(Self_Args[0])) {
+    console.log(error("You provided an invalid Discord token"));
+    process.exit();
 }
 
 User.on("ready", ()=>{
