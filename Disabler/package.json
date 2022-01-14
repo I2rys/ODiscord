@@ -1,0 +1,23 @@
+{
+  "name": "account-disabler",
+  "version": "1.0.0",
+  "description": "Easily disable or unverify any Discord account.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/I2rys/ODiscord.git"
+  },
+  "author": "Spinfal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/I2rys/ODiscord/issues"
+  },
+  "homepage": "https://github.com/I2rys/ODiscord#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "node-fetch": "^2.6.1"
+  }
+}
