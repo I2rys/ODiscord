@@ -5,7 +5,7 @@ Discord user information grabber via ID.
 ## Installation
 NPM Packages:
 
-    npm i axios
+    npm i
 
 ## Usage
 ```
