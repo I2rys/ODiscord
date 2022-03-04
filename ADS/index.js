@@ -10,13 +10,13 @@ const Plugins = Fs.readdirSync("./plugins", "utf8")
 const User = new Discord.Client()
 
 //Main
-if(Self_Args.length == 0){
+if(!Self_Args.length){
     console.log(`node index.js <discord_token>
 Example: node index.js notsofast_yourdiscordtokenhere`)
     process.exit()
 }
 
-if(Self_Args[0] == ""){
+if(!Self_Args[0]){
     console.log("Invalid discord_token.")
     process.exit()
 }
