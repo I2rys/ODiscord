@@ -6,10 +6,10 @@ const Fs = require("fs")
 //Variables
 const Self_Args = process.argv.slice(2)
 
-var results = ""
+var results;
 
 //Main
-if(Self_Args.length == 0){
+if(!Self_Args.length){
     console.log("node index.js <channel_id> <amount> <output> <discord_token>")
     process.exit()
 }
