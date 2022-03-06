@@ -7,15 +7,12 @@ const Self_Args = process.argv.slice(2)
 const User = new Discord.Client()
 
 //Main
-if(Self_Args.length == 0){
-    console.log(`node index.js <discord_token>
-Example: node index.js notsofast_yourdiscordtokenhere`)
-    process.exit()
+if(!Self_Args.length){
+    return console.log("node index.js <discord_token>")
 }
 
-if(Self_Args[0] == ""){
-    console.log("Invalid discord_token.")
-    process.exit()
+if(!Self_Args[0]){
+    return console.log("Invalid discord_token.")
 }
 
 User.on("ready", ()=>{
