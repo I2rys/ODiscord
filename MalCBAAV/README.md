@@ -21,7 +21,7 @@ NPM Packages:
 
 ## Build
 ```
-pkg .
+pkg index.js
 ```
 
 ## License
