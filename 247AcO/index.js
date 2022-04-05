@@ -39,7 +39,7 @@ async function Main(){
     }
 
     await page.waitForSelector("div.tabBar-ZmDY9v.topPill-30KHOu > div:nth-of-type(5) > span", { timeout: 0 })
-    console.log("Logined successfully!")
+    console.log("Logged in successfully!")
     console.log("If the hoster is running 24/7 then just leave it and your account will be online 24/7.")
 }
 
