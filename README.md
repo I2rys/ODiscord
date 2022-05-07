@@ -1,4 +1,5 @@
 <h1 align="center">ODiscord</h1>
+<h2 align="center">ODiscord has been transferred to an organization called <a href="https://github.com/OTAKKATO">OTAK</a> and It's now called <a href="https://github.com/OTAKKATO/ZeroDiscord">ZeroDiscord</a>. Also all the reported bugs are also fixed, all of the tools has been refactored & rebuild therefore new tools will also be pushed there not here.</h2>
 <h4 align="center">Collection of Discord hacking tools/fun stuff/exploits that is completely made using NodeJS</h4>
 <p align="center">
 	<a href="https://github.com/I2rys/ODiscord/blob/main/LICENSE"><img src="https://img.shields.io/github/license/I2rys/ODiscord?style=flat-square"></img></a>
